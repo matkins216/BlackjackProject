@@ -32,6 +32,9 @@ const betSpot = document.querySelector('#bet')
 const playerCardsEl = document.querySelector('.playerscards')
 const dealerCardsEl = document.querySelector('.dealerscards')
 
+const playerScoreEl = document.querySelector('#playerscore')
+const dealerScoreEl = document.querySelector('#dealerscore')
+
 /*----- constants -----*/
 const suits = ['s', 'c', 'd', 'h'];
 const ranks = ['02', '03', '04', '05', '06', '07', '08', '09', '10', 'J', 'Q', 'K', 'A'];
@@ -103,16 +106,18 @@ renderNewShuffledDeck();
 
 
 // state
-let dealerHand;
-let playerHand;
+let dealerHand = 0;
+let playerHand = 0;
 let bet;
 let bankRoll;
+
 
     init();
 
 function init() {
     bankRoll = 500
     bet = 0
+ 
 
     getNewShuffledDeck();
 
@@ -199,13 +204,38 @@ standBtn.addEventListener('click', (e) => {
 
 hitBtn.addEventListener('click', (e) => {
     console.log('draw another card')
-    // add liEl and make random selection
+
+    if (playerHand < 21){
+      for (i = 0; hitBtn =; i++){
+      newplayercard = document.createElement('div')
+      newplayercard.setAttribute('class', `card ${shuffledDeck[i].face}`)
+      playerCardsEl.appendChild(newplayercard)
+      playerHand += shuffledDeck[i].value
+      playerScoreEl.innerText = playerHand
+    } 
+    
+  } else {
+    console.log('you bust')
+  }
+    //   if(playerHand < 21) {
+
+    // newplayercard = document.createElement('div')
+
+    // for(let i = 0; i < shuffledDeck.length; i++) {
+    // newplayercard.setAttribute('class', `card ${shuffledDeck[i].face}`)
+    // playerCardsEl.appendChild(newplayercard)
+    // playerHand += shuffledDeck[i].value
+    // playerScoreEl.innerText = playerHand
+    //   } 
+        
     render();
-})
+    });
 
 dealBtn.addEventListener('click', (e) => {
+
+  if(bet > 0){
      deal();
-    
+  }
      render();
 });
 
@@ -213,17 +243,36 @@ function deal() {
     let shuffledDeck = getNewShuffledDeck(); 
     let playercard1 = document.createElement('div');
     let playercard2 = document.createElement('div');
+   
+
 
     // playercard1.setAttribute('class', `card.${shuffledDeck[0].face}`)
-    playercard1.setAttribute('src', `card.${shuffledDeck[0].face}`)
-    playercard2.setAttribute('class', `card.${shuffledDeck[1].face}`)
+    playercard1.setAttribute('class', `card ${shuffledDeck[0].face}`)
+    playercard2.setAttribute('class', `card ${shuffledDeck[1].face}`)
+    
+
 
     playerCardsEl.appendChild(playercard1)
     playerCardsEl.appendChild(playercard2)
 
-    render();
+    let dealercard1 = document.createElement('div');
+    let dealercard2 = document.createElement('div');
+
+    dealercard1.setAttribute('class', `card ${shuffledDeck[2].face}`)
+    dealercard2.setAttribute('class', `card ${shuffledDeck[3].face}`)
+
+    dealerCardsEl.appendChild(dealercard1)
+    dealerCardsEl.appendChild(dealercard2)
     
-} ;
+    playerHand += shuffledDeck[0].value
+    playerHand += shuffledDeck[1].value
+
+    dealerHand += shuffledDeck[2].value
+    dealerHand += shuffledDeck[3].value
+
+    dealerScoreEl.innerText = dealerHand;
+    playerScoreEl.innerText = playerHand;
+};
 
 // deck = [
 //     "A",
