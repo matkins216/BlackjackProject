@@ -203,33 +203,11 @@ standBtn.addEventListener('click', (e) => {
 })
 
 hitBtn.addEventListener('click', (e) => {
-    console.log('draw another card')
+  hit();
 
-    if (playerHand < 21){
-      for (i = 0; hitBtn =; i++){
-      newplayercard = document.createElement('div')
-      newplayercard.setAttribute('class', `card ${shuffledDeck[i].face}`)
-      playerCardsEl.appendChild(newplayercard)
-      playerHand += shuffledDeck[i].value
-      playerScoreEl.innerText = playerHand
-    } 
-    
-  } else {
-    console.log('you bust')
-  }
-    //   if(playerHand < 21) {
-
-    // newplayercard = document.createElement('div')
-
-    // for(let i = 0; i < shuffledDeck.length; i++) {
-    // newplayercard.setAttribute('class', `card ${shuffledDeck[i].face}`)
-    // playerCardsEl.appendChild(newplayercard)
-    // playerHand += shuffledDeck[i].value
-    // playerScoreEl.innerText = playerHand
-    //   } 
         
     render();
-    });
+});
 
 dealBtn.addEventListener('click', (e) => {
 
@@ -239,6 +217,22 @@ dealBtn.addEventListener('click', (e) => {
      render();
 });
 
+function hit() {
+  // if (playerHand > 21) {
+  for (let i = 0; playerHand < 21; i++) {
+  if (playerHand < 21) {
+      newplayercard = document.createElement('div')
+      newplayercard.setAttribute('class', `card ${shuffledDeck[i].face}`)
+      playerCardsEl.appendChild(newplayercard)
+      playerHand += shuffledDeck[i].value
+      playerScoreEl.innerText = playerHand
+      
+      // return 
+      
+  }
+      return 
+      
+}}
 function deal() {
     let shuffledDeck = getNewShuffledDeck(); 
     let playercard1 = document.createElement('div');
