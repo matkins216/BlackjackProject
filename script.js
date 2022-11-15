@@ -37,8 +37,8 @@ const drawEl = document.querySelector('#draw')
 const playerCardsEl = document.querySelector('.playerscards')
 const dealerCardsEl = document.querySelector('.dealerscards')
 
-const playerScoreEl = document.querySelector('#playerscore')
-const dealerScoreEl = document.querySelector('#dealerscore')
+const playerScoreEl = document.querySelector('.playerscore')
+const dealerScoreEl = document.querySelector('.dealerscore')
 
 /*----- constants -----*/
 const suits = ['s', 'c', 'd', 'h'];
@@ -146,6 +146,8 @@ function render() {
     winsEl.innerText = winCount
     lossEl.innerText = lossCount
     drawEl.innerText = drawCount
+   
+    
     
 }
 // game logic
@@ -176,7 +178,7 @@ function win() {
     else if(dealerHand > playerHand) {
       console.log('loser')
     bankRoll -= bet
-    loseCount += 1
+    lossCount += 1
     bet = 0
     return 
     }
@@ -227,6 +229,7 @@ fiddyBtn.addEventListener('click', (e) => {
 
 function changeTurn() {
     console.log('switch turn')
+    for(let i = 0; dealerHand < 17; i++){
     if(dealerHand < 17){
       let newdealercardValue = shuffledDeck.pop();
   let newdealercardEl = document.createElement('div');
@@ -235,7 +238,7 @@ function changeTurn() {
       dealerCardsEl.appendChild(newdealercardEl)
       dealerHand += newdealercardValue.value
       dealerScoreEl.innerText = dealerHand
-  win();
+  // win();
   };
   // if(playerHand > 21) {
   //   console.log('you lose')
@@ -260,10 +263,11 @@ function changeTurn() {
   //   render();
   // }
   render();
-}
+}}
 
 standBtn.addEventListener('click', (e) => {
     changeTurn();
+    win();
     render();
     
 })
@@ -315,10 +319,30 @@ function hit() {
 //      return
       
 // }}
+// function clearScore() {
+
+//   let playerScoreEl = document.createElement('p')
+//     playerScoreEl.className = ('playerScore')
+//     let dealerScoreEl = document.createElement('p')
+//     dealerScoreEl.className = ('dealerScore')
+// // playerCardsEl.innerText = ''
+// // dealerCardsEl.innerText = ''
+// // playerScoreEl.innerText = 0
+// // dealerScoreEl.innerText = 0
+// // let dealerHand = 0;
+// // let playerHand = 0;
+// }
+
 function deal() {
+
+ getNewShuffledDeck();
     // let shuffledDeck = getNewShuffledDeck(); 
     let playercard1 = document.createElement('div');
     let playercard2 = document.createElement('div');
+    // let playerScoreEl = document.createElement('p')
+    // playerScoreEl.className = ('playerScore')
+    // let dealerScoreEl = document.createElement('p')
+    // dealerScoreEl.className = ('dealerScore')
    
 
 
@@ -346,30 +370,49 @@ function deal() {
     dealerHand += shuffledDeck[2].value
     dealerHand += shuffledDeck[3].value
 
-    dealerScoreEl.innerText = dealerHand;
-    playerScoreEl.innerText = playerHand;
+    dealerScoreEl.innerText = dealerHand
+    playerScoreEl.innerText = playerHand
 
     if(playerHand === 21){
       console.log('you win')
-      return bankRoll += bet
+      bankRoll += bet
+      winCount += 1
+
     } else if(dealerHand === 21){
       console.log('dealer wins')
-      return bankRoll -= bet
+      lossCount += 1
+      bankRoll -= bet
+      return
     }
+ 
+// render();
 
-render();
 };
-const resetBtn = document.querySelector('#reset')
+const resetBtn = document.querySelector('#reset');
+
+function clearScore() {
+
+  // let playerScoreEl = document.createElement('p')
+  //   playerScoreEl.className = ('playerScore')
+  //   let dealerScoreEl = document.createElement('p')
+  //   dealerScoreEl.className = ('dealerScore')
+// playerCardsEl.innerText = ''
+// dealerCardsEl.innerText = ''
+// playerScoreEl.innerText = 0
+// dealerScoreEl.innerText = 0
+// let dealerHand = 0;
+// let playerHand = 0;
+}
 
 resetBtn.addEventListener('click', (e) => {
-  dealercard1.remove()
-  dealercard2.remove()
-  playercard1.remove()
-  playercard2.remove()
-  newplayercardEl.remove()
-  newdealercardEl.remove()
+  // clearScore();
   init();
-  deal();
-  render();
-
+  // deal();
+// render();
+// playerCardsEl.innerText = ''
+// dealerCardsEl.innerText = ''
+// playerScoreEl.innerText = 0
+// dealerScoreEl.innerText = 0
+deal();
+render();
 })
