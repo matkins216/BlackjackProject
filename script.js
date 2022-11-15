@@ -23,6 +23,11 @@ const bankRollbank = document.querySelector('#bankroll')
 
 const betSpot = document.querySelector('#bet')
 
+const winsEl = document.querySelector('#win')
+const lossEl = document.querySelector('#loss')
+const drawEl = document.querySelector('#draw')
+
+
 // const dealerCard1 = document.querySelector('#dealercard1')
 // const dealerCard2 = document.querySelector('#dealercard2')
 
@@ -109,18 +114,21 @@ renderNewShuffledDeck();
 let dealerHand = 0;
 let playerHand = 0;
 let bet;
-let bankRoll;
+let bankRoll = 500;
+let winCount = 0;
+let lossCount = 0; 
+let drawCount = 0;
 
 
     init();
 
 function init() {
-    bankRoll = 500
+  
     bet = 0
- 
 
     getNewShuffledDeck();
-
+dealerHand = 0
+playerHand = 0
 
     
     
@@ -135,14 +143,44 @@ function render() {
     // let bankRoll;
     betSpot.innerText = bet
     bankRollbank.innerText = bankRoll
+    winsEl.innerText = winCount
+    lossEl.innerText = lossCount
+    drawEl.innerText = drawCount
+    
 }
 // game logic
 
 
 //win function
 function win() {
-    if(playerHand > dealerHand || dealerHand > 21)
-    return bankRoll += bet
+    if (playerHand > 21){
+      console.log('you lose')
+    bankRoll -= bet
+    bet = 0
+    lossCount += 1
+    return 
+    } 
+    else if (playerHand > dealerHand || dealerHand > 21) {
+      console.log('you won')
+      bankRoll += bet
+      bet = 0
+      winCount += 1
+      return 
+    }
+    else if (playerHand === dealerHand){
+    console.log('draw')
+    bet = 0
+    drawCount += 1
+    return 
+    } 
+    else if(dealerHand > playerHand) {
+      console.log('loser')
+    bankRoll -= bet
+    loseCount += 1
+    bet = 0
+    return 
+    }
+    
 render();
    
 };
@@ -197,42 +235,43 @@ function changeTurn() {
       dealerCardsEl.appendChild(newdealercardEl)
       dealerHand += newdealercardValue.value
       dealerScoreEl.innerText = dealerHand
+  win();
+  };
+  // if(playerHand > 21) {
+  //   console.log('you lose')
+  //   render();
+  // };
   
-  };
-  if(playerHand > 21) {
-    console.log('you lose')
-    render();
-  };
-  
-  if(playerHand > dealerHand && playerHand <= 21){
+  // if(playerHand > dealerHand && playerHand <= 21){
      
-        win();
+  //       win();
         
-        render();
+  //       render();
         
-  };
-  if (dealerHand > playerHand && dealerHand <= 21){
+  // };
+  // if (dealerHand > playerHand && dealerHand <= 21){
      
-        lose();
-        render();
+  //       lose();
+  //       render();
         
-  };
-  if (dealerHand > 21){
-    win();
-    render();
-  }
+  // };
+  // if (dealerHand > 21){
+  //   win();
+  //   render();
+  // }
   render();
 }
 
 standBtn.addEventListener('click', (e) => {
     changeTurn();
     render();
+    
 })
 
 hitBtn.addEventListener('click', (e) => {
    hit();
 
-        
+      
     render();
 });
 
@@ -254,8 +293,10 @@ function hit() {
       playerHand += newplayercardValue.value
       playerScoreEl.innerText = playerHand
       
-      render();
+     
     }
+    
+    render();
 }
 // }
 //   if (playerHand < 21) {
@@ -307,4 +348,28 @@ function deal() {
 
     dealerScoreEl.innerText = dealerHand;
     playerScoreEl.innerText = playerHand;
+
+    if(playerHand === 21){
+      console.log('you win')
+      return bankRoll += bet
+    } else if(dealerHand === 21){
+      console.log('dealer wins')
+      return bankRoll -= bet
+    }
+
+render();
 };
+const resetBtn = document.querySelector('#reset')
+
+resetBtn.addEventListener('click', (e) => {
+  dealercard1.remove()
+  dealercard2.remove()
+  playercard1.remove()
+  playercard2.remove()
+  newplayercardEl.remove()
+  newdealercardEl.remove()
+  init();
+  deal();
+  render();
+
+})
