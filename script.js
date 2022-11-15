@@ -127,8 +127,8 @@ function init() {
     bet = 0
 
     getNewShuffledDeck();
-dealerHand = 0
-playerHand = 0
+
+
 
     
     
@@ -146,6 +146,8 @@ function render() {
     winsEl.innerText = winCount
     lossEl.innerText = lossCount
     drawEl.innerText = drawCount
+    playerScoreEl.innerText = playerHand
+    dealerScoreEl.innerText = dealerHand
    
     
     
@@ -339,10 +341,10 @@ function deal() {
     // let shuffledDeck = getNewShuffledDeck(); 
     let playercard1 = document.createElement('div');
     let playercard2 = document.createElement('div');
-    // let playerScoreEl = document.createElement('p')
-    // playerScoreEl.className = ('playerScore')
-    // let dealerScoreEl = document.createElement('p')
-    // dealerScoreEl.className = ('dealerScore')
+    let playerScoreEl = document.createElement('p')
+    playerScoreEl.className = ('playerScore')
+    let dealerScoreEl = document.createElement('p')
+    dealerScoreEl.className = ('dealerScore')
    
 
 
@@ -372,7 +374,7 @@ function deal() {
 
     dealerScoreEl.innerText = dealerHand
     playerScoreEl.innerText = playerHand
-
+ 
     if(playerHand === 21){
       console.log('you win')
       bankRoll += bet
@@ -384,11 +386,16 @@ function deal() {
       bankRoll -= bet
       return
     }
+    
+
  
-// render();
+render();
+dealerScoreEl.innerText = dealerHand
+    playerScoreEl.innerText = playerHand
 
 };
 const resetBtn = document.querySelector('#reset');
+
 
 function clearScore() {
 
@@ -400,19 +407,24 @@ function clearScore() {
 // dealerCardsEl.innerText = ''
 // playerScoreEl.innerText = 0
 // dealerScoreEl.innerText = 0
-// let dealerHand = 0;
-// let playerHand = 0;
-}
+const cardEls = document.querySelectorAll('.card')
+cardEls.forEach(e => e.remove())
+// playerScoreEl.remove()
+// dealerScoreEl.innerText 
+// playerCardsEl.remove()
+// dealerCardsEl.remove()
+};
 
 resetBtn.addEventListener('click', (e) => {
-  // clearScore();
+  clearScore();
+  // clearCards();
   init();
   // deal();
 // render();
-// playerCardsEl.innerText = ''
-// dealerCardsEl.innerText = ''
+// playerCardsEl.innerText = playerHand
+// dealerCardsEl.innerText = dealerHand
 // playerScoreEl.innerText = 0
 // dealerScoreEl.innerText = 0
-deal();
+// deal();
 render();
 })
