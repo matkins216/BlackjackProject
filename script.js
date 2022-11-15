@@ -138,24 +138,20 @@ function render() {
 }
 // game logic
 
-// if(playerHand > dealerHand){
-//     console.log('player wins')
-// }else if(dealerHand > playerHand){
-//     console.log('dealer wins')
-// }
 
 //win function
-function win(){
-    console.log('you won')
+function win() {
+    if(playerHand > dealerHand || dealerHand > 21)
     return bankRoll += bet
-
+render();
    
-}
+};
 
-function lose() {
-    console.log('you lose')
-    return bankRoll -= bet
-}
+// function lose() {
+//     console.log('you lose')
+//     return bankRoll -= bet
+//     render();
+// };
 
 // bet function 
 
@@ -193,8 +189,39 @@ fiddyBtn.addEventListener('click', (e) => {
 
 function changeTurn() {
     console.log('switch turn')
-    render();
+    if(dealerHand < 17){
+      let newdealercardValue = shuffledDeck.pop();
+  let newdealercardEl = document.createElement('div');
     
+      newdealercardEl.setAttribute('class', `card ${newdealercardValue.face}`)
+      dealerCardsEl.appendChild(newdealercardEl)
+      dealerHand += newdealercardValue.value
+      dealerScoreEl.innerText = dealerHand
+  
+  };
+  if(playerHand > 21) {
+    console.log('you lose')
+    render();
+  };
+  
+  if(playerHand > dealerHand && playerHand <= 21){
+     
+        win();
+        
+        render();
+        
+  };
+  if (dealerHand > playerHand && dealerHand <= 21){
+     
+        lose();
+        render();
+        
+  };
+  if (dealerHand > 21){
+    win();
+    render();
+  }
+  render();
 }
 
 standBtn.addEventListener('click', (e) => {
@@ -218,33 +245,37 @@ dealBtn.addEventListener('click', (e) => {
 });
 
 function hit() {
-  let  newplayercard = shuffledDeck.pop();
-      newplayercard = document.createElement('div')
+  if(playerHand < 21){
+  let newplayercardValue = shuffledDeck.pop();
+  let newplayercardEl = document.createElement('div');
     
-      newplayercard.setAttribute('class',  `card ${shuffledDeck.pop().face}`)
-      playerCardsEl.appendChild(newplayercard)
-      playerHand += shuffledDeck.pop().value
+      newplayercardEl.setAttribute('class', `card ${newplayercardValue.face}`)
+      playerCardsEl.appendChild(newplayercardEl)
+      playerHand += newplayercardValue.value
       playerScoreEl.innerText = playerHand
       
+      render();
     }
-  
-  
+}
+// }
 //   if (playerHand < 21) {
-//   for (let i = 0; i < shuffledDeck.length; i += 1) { 
+//   for (let i = 0; i < shuffledDeck.length; i++) { 
+//     // let newplayercard = shuffledDeck.pop();
 //       newplayercard = document.createElement('div')
 //       newplayercard.setAttribute('class', `card ${shuffledDeck[i].face}`)
 //       playerCardsEl.appendChild(newplayercard)
 //       playerHand += shuffledDeck[i].value
 //       playerScoreEl.innerText = playerHand
-      
-//       return i += 1
+//       i++
+//       shuffledDeck.pop();
+//       return
       
 //   }
-//       // return 
+//      return
       
 // }}
 function deal() {
-    let shuffledDeck = getNewShuffledDeck(); 
+    // let shuffledDeck = getNewShuffledDeck(); 
     let playercard1 = document.createElement('div');
     let playercard2 = document.createElement('div');
    
@@ -277,4 +308,3 @@ function deal() {
     dealerScoreEl.innerText = dealerHand;
     playerScoreEl.innerText = playerHand;
 };
-
