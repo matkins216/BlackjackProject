@@ -19,6 +19,10 @@ console.log(fiddyBtn)
 
 const dealBtn = document.querySelector('#deal')
 
+// const dealBtnCreate = document.querySelector('button')
+
+const dealBtnOne = document.querySelector('#deal2')
+
 const bankRollbank = document.querySelector('#bankroll')
 
 const betSpot = document.querySelector('#bet')
@@ -129,7 +133,8 @@ function init() {
 
     getNewShuffledDeck();
 
-
+standBtn.style.visibility = 'hidden'
+hitBtn.style.visibility = 'hidden'
 
     
     
@@ -203,13 +208,6 @@ render();
    
 };
 
-// function lose() {
-//     console.log('you lose')
-//     return bankRoll -= bet
-//     render();
-// };
-
-// bet function 
 
 fiverBtn.addEventListener('click', (e) => {
     // console.log('add 5 to bet')
@@ -263,6 +261,8 @@ function changeTurn() {
 standBtn.addEventListener('click', (e) => {
     changeTurn();
     win();
+    
+
     render();
     
 })
@@ -282,7 +282,7 @@ hitBtn.addEventListener('click', (e) => {
     lossCount += 1
     resultEl.innerText = 'YOU LOSE'
   }
-      
+ 
     render();
 });
 
@@ -292,7 +292,12 @@ dealBtn.addEventListener('click', (e) => {
      deal();
   }
      render();
+     standBtn.style.visibility = 'visible'
+hitBtn.style.visibility = 'visible'
+
 });
+
+
 
 function hit() {
   if(playerHand < 21){
@@ -312,6 +317,7 @@ function hit() {
       winCount += 1
       resultEl.innerText = 'YOU WIN'
     }
+    
     render();
 }
 
@@ -369,12 +375,9 @@ function deal() {
       return
     }
     
-
+    dealBtn.style.visibility = 'hidden';
  
 render();
-// dealerScoreEl.innerText = dealerHand
-//     playerScoreEl.innerText = playerHand
-
 };
 
 const resetBtn = document.querySelector('#reset');
@@ -386,12 +389,17 @@ cardEls.forEach(e => e.remove())
 resultEl.innerText = 'RESULT'
 playerHand = 0;
 dealerHand = 0;
+
 };
 
+
 resetBtn.addEventListener('click', (e) => {
+
   clearScore();
   init();
+  dealBtn.style.visibility = 'visible';
 render();
-})
+});
+
 
 

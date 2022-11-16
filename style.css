@@ -23,6 +23,11 @@ body {
   grid-row-end: 2;
   align-content: center;
   text-align: center;
+  animation-duration: 3s;
+  animation-delay: 2s;
+  animation-direction: normal;
+  transform: matrix();
+  animation-play-state: running;
   
 }
 
@@ -81,11 +86,22 @@ div > p {
 }
 
 div > img {
+  transform: translateY(-400px);
+  animation: title ease-in forwards;
+  animation-play-state: running;
+  animation-iteration-count: 1;
+  animation-duration: 1.89s;
+
+
   grid-row-start: 1;
   grid-column-start: 2;
   grid-column-end: 3;
   align-self: center;
   justify-self: center;
+}
+
+@keyframes title {
+  to {transform: translateY(0px);}
 }
 
 section, h2 {
