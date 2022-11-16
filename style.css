@@ -10,11 +10,11 @@ html, body {
 
 body {
   display: grid;
-  background-image: url("https://image.shutterstock.com/image-photo/poker-chips-on-green-felt-260nw-626602559.jpg");
+  background-image: url("../blackjack/images/tablebg.jpeg");
   grid-template-columns: 200px 1fr 200px;
   grid-template-rows: 275px 1fr 250px;
   background-repeat: no-repeat;
-background-size: cover; 
+  background-size: cover; 
 }
 .logo {
   /* justify-content: flex-start; */
