@@ -26,6 +26,7 @@ const betSpot = document.querySelector('#bet')
 const winsEl = document.querySelector('#win')
 const lossEl = document.querySelector('#loss')
 const drawEl = document.querySelector('#draw')
+const resultEl = document.querySelector('#result')
 
 
 // const dealerCard1 = document.querySelector('#dealercard1')
@@ -162,12 +163,14 @@ function win() {
     bankRoll -= bet
     bet = 0
     lossCount += 1
+    resultEl.innerText = 'YOU LOSE'
     return 
     } 
     else if (playerHand > 21 && dealerHand > 21){
       console.log('draw')
       bet = 0
       drawCount += 1
+      resultEl.innerText = 'ITS A DRAW'
       return 
     }
     else if (playerHand > dealerHand || dealerHand > 21) {
@@ -175,12 +178,14 @@ function win() {
       bankRoll += bet
       bet = 0
       winCount += 1
+      resultEl.innerText = 'YOU WIN'
       return 
     }
     else if (playerHand === dealerHand){
     console.log('draw')
     bet = 0
     drawCount += 1
+    resultEl.innerText = 'ITS A DRAW'
     return 
     } 
     else if(dealerHand > playerHand) {
@@ -188,6 +193,7 @@ function win() {
     bankRoll -= bet
     lossCount += 1
     bet = 0
+    resultEl.innerText = 'YOU LOSE'
     return 
     } else {
       console.log('who knows')
@@ -285,6 +291,18 @@ standBtn.addEventListener('click', (e) => {
 hitBtn.addEventListener('click', (e) => {
    hit();
 
+   if(playerHand === 21){
+    console.log('you win')
+    bankRoll += bet
+    winCount += 1
+    resultEl.innerText = 'YOU WIN'
+  }
+
+  if(playerHand > 21){
+    bankRoll -= bet
+    lossCount += 1
+    resultEl.innerText = 'YOU LOSE'
+  }
       
     render();
 });
@@ -313,6 +331,7 @@ function hit() {
       console.log('you win')
       bankRoll += bet
       winCount += 1
+      resultEl.innerText = 'YOU WIN'
     }
     render();
 }
@@ -361,11 +380,13 @@ function deal() {
       console.log('you win')
       bankRoll += bet
       winCount += 1
+      resultEl.innerText = 'YOU WIN'
 
     } else if(dealerHand === 21){
       console.log('dealer wins')
       lossCount += 1
       bankRoll -= bet
+      resultEl.innerText = 'YOU LOSE'
       return
     }
     
@@ -383,7 +404,7 @@ const resetBtn = document.querySelector('#reset');
 function clearScore() {
 const cardEls = document.querySelectorAll('.card')
 cardEls.forEach(e => e.remove())
-
+resultEl.innerText = 'RESULT :'
 playerHand = 0;
 dealerHand = 0;
 };
@@ -393,3 +414,5 @@ resetBtn.addEventListener('click', (e) => {
   init();
 render();
 })
+
+
