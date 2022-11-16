@@ -256,28 +256,7 @@ function changeTurn() {
       dealerScoreEl.innerText = dealerHand
   // win();
   };
-  // if(playerHand > 21) {
-  //   console.log('you lose')
-  //   render();
-  // };
-  
-  // if(playerHand > dealerHand && playerHand <= 21){
-     
-  //       win();
-        
-  //       render();
-        
-  // };
-  // if (dealerHand > playerHand && dealerHand <= 21){
-     
-  //       lose();
-  //       render();
-        
-  // };
-  // if (dealerHand > 21){
-  //   win();
-  //   render();
-  // }
+ 
   render();
 }}
 
@@ -358,19 +337,19 @@ function deal() {
     playerCardsEl.appendChild(playercard1)
     playerCardsEl.appendChild(playercard2)
 
-    let dealercard1 = document.createElement('div');
+    // let dealercard1 = document.createElement('div');
     let dealercard2 = document.createElement('div');
 
-    dealercard1.setAttribute('class', `card ${shuffledDeck[2].face}`)
+    // dealercard1.setAttribute('class', `card ${shuffledDeck[2].face}`)
     dealercard2.setAttribute('class', `card ${shuffledDeck[3].face}`)
 
-    dealerCardsEl.appendChild(dealercard1)
+    // dealerCardsEl.appendChild(dealercard1)
     dealerCardsEl.appendChild(dealercard2)
     
     playerHand += shuffledDeck[0].value
     playerHand += shuffledDeck[1].value
 
-    dealerHand += shuffledDeck[2].value
+    // dealerHand += shuffledDeck[2].value
     dealerHand += shuffledDeck[3].value
 
     dealerScoreEl.innerText = dealerHand
@@ -404,7 +383,7 @@ const resetBtn = document.querySelector('#reset');
 function clearScore() {
 const cardEls = document.querySelectorAll('.card')
 cardEls.forEach(e => e.remove())
-resultEl.innerText = 'RESULT :'
+resultEl.innerText = 'RESULT'
 playerHand = 0;
 dealerHand = 0;
 };
