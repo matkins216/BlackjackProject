@@ -164,6 +164,12 @@ function win() {
     lossCount += 1
     return 
     } 
+    else if (playerHand > 21 && dealerHand > 21){
+      console.log('draw')
+      bet = 0
+      drawCount += 1
+      return 
+    }
     else if (playerHand > dealerHand || dealerHand > 21) {
       console.log('you won')
       bankRoll += bet
@@ -183,6 +189,8 @@ function win() {
     lossCount += 1
     bet = 0
     return 
+    } else {
+      console.log('who knows')
     }
     
 render();
@@ -301,39 +309,13 @@ function hit() {
       
      
     }
-    
+    if(playerHand === 21){
+      console.log('you win')
+      bankRoll += bet
+      winCount += 1
+    }
     render();
 }
-// }
-//   if (playerHand < 21) {
-//   for (let i = 0; i < shuffledDeck.length; i++) { 
-//     // let newplayercard = shuffledDeck.pop();
-//       newplayercard = document.createElement('div')
-//       newplayercard.setAttribute('class', `card ${shuffledDeck[i].face}`)
-//       playerCardsEl.appendChild(newplayercard)
-//       playerHand += shuffledDeck[i].value
-//       playerScoreEl.innerText = playerHand
-//       i++
-//       shuffledDeck.pop();
-//       return
-      
-//   }
-//      return
-      
-// }}
-// function clearScore() {
-
-//   let playerScoreEl = document.createElement('p')
-//     playerScoreEl.className = ('playerScore')
-//     let dealerScoreEl = document.createElement('p')
-//     dealerScoreEl.className = ('dealerScore')
-// // playerCardsEl.innerText = ''
-// // dealerCardsEl.innerText = ''
-// // playerScoreEl.innerText = 0
-// // dealerScoreEl.innerText = 0
-// // let dealerHand = 0;
-// // let playerHand = 0;
-// }
 
 function deal() {
 
@@ -390,41 +372,24 @@ function deal() {
 
  
 render();
-dealerScoreEl.innerText = dealerHand
-    playerScoreEl.innerText = playerHand
+// dealerScoreEl.innerText = dealerHand
+//     playerScoreEl.innerText = playerHand
 
 };
+
 const resetBtn = document.querySelector('#reset');
 
 
 function clearScore() {
-
-  // let playerScoreEl = document.createElement('p')
-  //   playerScoreEl.className = ('playerScore')
-  //   let dealerScoreEl = document.createElement('p')
-  //   dealerScoreEl.className = ('dealerScore')
-// playerCardsEl.innerText = ''
-// dealerCardsEl.innerText = ''
-// playerScoreEl.innerText = 0
-// dealerScoreEl.innerText = 0
 const cardEls = document.querySelectorAll('.card')
 cardEls.forEach(e => e.remove())
-// playerScoreEl.remove()
-// dealerScoreEl.innerText 
-// playerCardsEl.remove()
-// dealerCardsEl.remove()
+
+playerHand = 0;
+dealerHand = 0;
 };
 
 resetBtn.addEventListener('click', (e) => {
   clearScore();
-  // clearCards();
   init();
-  // deal();
-// render();
-// playerCardsEl.innerText = playerHand
-// dealerCardsEl.innerText = dealerHand
-// playerScoreEl.innerText = 0
-// dealerScoreEl.innerText = 0
-// deal();
 render();
 })
