@@ -19,8 +19,6 @@ console.log(fiddyBtn)
 
 const dealBtn = document.querySelector('#deal')
 
-// const dealBtnCreate = document.querySelector('button')
-
 const dealBtnOne = document.querySelector('#deal2')
 
 const bankRollbank = document.querySelector('#bankroll')
@@ -31,13 +29,6 @@ const winsEl = document.querySelector('#win')
 const lossEl = document.querySelector('#loss')
 const drawEl = document.querySelector('#draw')
 const resultEl = document.querySelector('#result')
-
-
-// const dealerCard1 = document.querySelector('#dealercard1')
-// const dealerCard2 = document.querySelector('#dealercard2')
-
-// const playerCard1 = document.querySelector('playercard1')
-// const playerCard2 = document.querySelector('playercard2')
 
 const playerCardsEl = document.querySelector('.playerscards')
 const dealerCardsEl = document.querySelector('.dealerscards')
@@ -143,10 +134,7 @@ hitBtn.style.visibility = 'hidden'
 };
 
 function render() {
-    // let dealerHand;
-    // let playerHand;
-    // let bet;
-    // let bankRoll;
+
     betSpot.innerText = bet
     bankRollbank.innerText = bankRoll
     winsEl.innerText = winCount
@@ -239,7 +227,7 @@ fiddyBtn.addEventListener('click', (e) => {
     
 });
 
-// _________________________________________________
+
 
 function changeTurn() {
     console.log('switch turn')
@@ -274,6 +262,7 @@ hitBtn.addEventListener('click', (e) => {
     console.log('you win')
     bankRoll += bet
     winCount += 1
+    changeTurn();
     resultEl.innerText = 'YOU WIN'
   }
 
@@ -324,7 +313,7 @@ function hit() {
 function deal() {
 
  getNewShuffledDeck();
-    // let shuffledDeck = getNewShuffledDeck(); 
+    
     let playercard1 = document.createElement('div');
     let playercard2 = document.createElement('div');
     let playerScoreEl = document.createElement('p')
@@ -334,7 +323,7 @@ function deal() {
    
 
 
-    // playercard1.setAttribute('class', `card.${shuffledDeck[0].face}`)
+    
     playercard1.setAttribute('class', `card ${shuffledDeck[0].face}`)
     playercard2.setAttribute('class', `card ${shuffledDeck[1].face}`)
     
@@ -343,19 +332,19 @@ function deal() {
     playerCardsEl.appendChild(playercard1)
     playerCardsEl.appendChild(playercard2)
 
-    // let dealercard1 = document.createElement('div');
+    
     let dealercard2 = document.createElement('div');
 
-    // dealercard1.setAttribute('class', `card ${shuffledDeck[2].face}`)
+    
     dealercard2.setAttribute('class', `card ${shuffledDeck[3].face}`)
 
-    // dealerCardsEl.appendChild(dealercard1)
+   
     dealerCardsEl.appendChild(dealercard2)
     
     playerHand += shuffledDeck[0].value
     playerHand += shuffledDeck[1].value
 
-    // dealerHand += shuffledDeck[2].value
+    
     dealerHand += shuffledDeck[3].value
 
     dealerScoreEl.innerText = dealerHand

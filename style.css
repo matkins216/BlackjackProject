@@ -12,7 +12,7 @@ body {
   display: grid;
   background-image: url("../blackjack/images/tablebg.jpeg");
   grid-template-columns: 200px 1fr 200px;
-  grid-template-rows: 275px 1fr 250px;
+  grid-template-rows: 275px 1fr 275px;
   background-repeat: no-repeat;
   background-size: cover; 
 }
@@ -58,6 +58,11 @@ font-size: large;
 color: white;
 }
 
+.pinup {
+  grid-column-start: 1;
+  grid-row-start: 1;
+}
+
 .stats {
 
   grid-column-start: 3;
@@ -86,11 +91,11 @@ div > p {
 }
 
 div > img {
-  transform: translateY(-400px);
+  transform: translateY(-300px);
   animation: title ease-in forwards;
   animation-play-state: running;
   animation-iteration-count: 1;
-  animation-duration: 1.89s;
+  animation-duration: 1s;
 
 
   grid-row-start: 1;
