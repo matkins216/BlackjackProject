@@ -125,10 +125,11 @@ button {
   margin: 10px ;
   padding: 10px;
   font-size: 18px;
-  color: grey;
-  border: 1px solid grey;
+  color: white;
+  border: 2px solid white;
   border-radius: 4px;
   outline: none;
+  background-color: royalblue;
 }
 
 button:hover {
@@ -484,3 +485,20 @@ button:hover {
   .card.E.shadow {
     box-shadow: -2px 2px 3px 0 rgba(41, 41, 41, 0.75); }
 
+/* @media only screen and (min-width: 390px) and (max-width: 500px) {
+ .pinup {
+  visibility: hidden;
+ }
+ body {
+  height: 1vh;
+  background-size: cover;
+ }
+ .buttons {
+  grid-row-start: 3;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  align-self: center;
+  justify-self: center;
+  }
+
+} */
