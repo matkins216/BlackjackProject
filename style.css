@@ -10,7 +10,7 @@ html, body {
 
 body {
   display: grid;
-  background-image: url("../blackjack/images/tablebg.jpeg");
+  background-image: url("images/tablebg.jpeg");
   grid-template-columns: 200px 1fr 200px;
   grid-template-rows: 275px 1fr 275px;
   background-repeat: no-repeat;
