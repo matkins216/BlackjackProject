@@ -390,5 +390,5 @@ resetBtn.addEventListener('click', (e) => {
 render();
 });
 
-
+// heres how i know its main page
 
