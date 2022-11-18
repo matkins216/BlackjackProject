@@ -17,7 +17,6 @@ body {
   background-size: cover; 
 }
 .logo {
-  /* justify-content: flex-start; */
   grid-column-start: 2;
   grid-row-start: 1;
   grid-row-end: 2;
@@ -32,7 +31,6 @@ body {
 }
 
 .cardsinplay {
-  /* display: grid; */
   grid-column-start: 2;
   grid-column-end: 3;
   grid-row-start: 2;
@@ -42,9 +40,7 @@ body {
   color: white;
 }
 
-/* .playerscards{
 
-} */
 
 #result  {
   /* display: grid; */
@@ -485,20 +481,3 @@ button:hover {
   .card.E.shadow {
     box-shadow: -2px 2px 3px 0 rgba(41, 41, 41, 0.75); }
 
-/* @media only screen and (min-width: 390px) and (max-width: 500px) {
- .pinup {
-  visibility: hidden;
- }
- body {
-  height: 1vh;
-  background-size: cover;
- }
- .buttons {
-  grid-row-start: 3;
-  grid-column-start: 2;
-  grid-column-end: 3;
-  align-self: center;
-  justify-self: center;
-  }
-
-} */

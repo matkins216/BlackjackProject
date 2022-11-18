@@ -119,22 +119,13 @@ let drawCount = 0;
     init();
 
 function init() {
-  
     bet = 0
-
-    getNewShuffledDeck();
-
-standBtn.style.visibility = 'hidden'
-hitBtn.style.visibility = 'hidden'
-
-    
-    
+    standBtn.style.visibility = 'hidden'
+    hitBtn.style.visibility = 'hidden'
     render();
-
 };
 
 function render() {
-
     betSpot.innerText = bet
     bankRollbank.innerText = bankRoll
     winsEl.innerText = winCount
@@ -142,9 +133,6 @@ function render() {
     drawEl.innerText = drawCount
     playerScoreEl.innerText = playerHand
     dealerScoreEl.innerText = dealerHand
-   
-    
-    
 }
 // game logic
 
@@ -152,42 +140,33 @@ function render() {
 //win function
 function win() {
     if (playerHand > 21){
-      console.log('you lose')
-    bankRoll -= bet
-    bet = 0
-    lossCount += 1
-    resultEl.innerText = 'YOU LOSE'
+      bankRoll -= bet
+      bet = 0
+      lossCount += 1
+      resultEl.innerText = 'YOU LOSE'
     return 
-    } 
-    else if (playerHand > 21 && dealerHand > 21){
-      console.log('draw')
+    } else if (playerHand > 21 && dealerHand > 21){
       bet = 0
       drawCount += 1
       resultEl.innerText = 'ITS A DRAW'
       return 
-    }
-    else if (playerHand > dealerHand || dealerHand > 21) {
-      console.log('you won')
+    } else if (playerHand > dealerHand || dealerHand > 21) {
       bankRoll += bet
       bet = 0
       winCount += 1
       resultEl.innerText = 'YOU WIN'
       return 
-    }
-    else if (playerHand === dealerHand){
-    console.log('draw')
-    bet = 0
-    drawCount += 1
-    resultEl.innerText = 'ITS A DRAW'
+    } else if (playerHand === dealerHand){
+      bet = 0
+      drawCount += 1
+      resultEl.innerText = 'ITS A DRAW'
     return 
-    } 
-    else if(dealerHand > playerHand) {
-      console.log('loser')
-    bankRoll -= bet
-    lossCount += 1
-    bet = 0
-    resultEl.innerText = 'YOU LOSE'
-    return 
+    } else if(dealerHand > playerHand) {
+      bankRoll -= bet
+      lossCount += 1
+      bet = 0
+      resultEl.innerText = 'YOU LOSE'
+      return 
     } else {
       console.log('who knows')
     }
@@ -198,33 +177,23 @@ render();
 
 
 fiverBtn.addEventListener('click', (e) => {
-    // console.log('add 5 to bet')
     bet += 5
-    
-    
-render();
-   
+    render();
 });
 
 tennerBtn.addEventListener('click', (e) => {
-    console.log('add 10 to bet')
     bet += 10
-
     render();
 });
 
 quarterBtn.addEventListener('click', (e) => {
-    console.log('add 25 to bet')
     bet += 25
     render();
-  
 });
 
 fiddyBtn.addEventListener('click', (e) => {
-    console.log('add 50 to bet')
     bet += 50
     render();
-    
 });
 
 
@@ -234,13 +203,13 @@ function changeTurn() {
     for(let i = 0; dealerHand < 17; i++){
     if(dealerHand < 17){
       let newdealercardValue = shuffledDeck.pop();
-  let newdealercardEl = document.createElement('div');
+      let newdealercardEl = document.createElement('div');
     
       newdealercardEl.setAttribute('class', `card ${newdealercardValue.face}`)
       dealerCardsEl.appendChild(newdealercardEl)
       dealerHand += newdealercardValue.value
       dealerScoreEl.innerText = dealerHand
-  // win();
+  
   };
  
   render();
@@ -320,27 +289,21 @@ function deal() {
     playerScoreEl.className = ('playerScore')
     let dealerScoreEl = document.createElement('p')
     dealerScoreEl.className = ('dealerScore')
-   
-
-
     
     playercard1.setAttribute('class', `card ${shuffledDeck[0].face}`)
     playercard2.setAttribute('class', `card ${shuffledDeck[1].face}`)
     
-
-
     playerCardsEl.appendChild(playercard1)
     playerCardsEl.appendChild(playercard2)
 
     
     let dealercard2 = document.createElement('div');
 
-    
     dealercard2.setAttribute('class', `card ${shuffledDeck[3].face}`)
 
-   
     dealerCardsEl.appendChild(dealercard2)
     
+
     playerHand += shuffledDeck[0].value
     playerHand += shuffledDeck[1].value
 
@@ -373,11 +336,11 @@ const resetBtn = document.querySelector('#reset');
 
 
 function clearScore() {
-const cardEls = document.querySelectorAll('.card')
-cardEls.forEach(e => e.remove())
-resultEl.innerText = 'RESULT'
-playerHand = 0;
-dealerHand = 0;
+  const cardEls = document.querySelectorAll('.card')
+  cardEls.forEach(e => e.remove())
+  resultEl.innerText = 'RESULT'
+  playerHand = 0;
+  dealerHand = 0;
 
 };
 
@@ -387,8 +350,7 @@ resetBtn.addEventListener('click', (e) => {
   clearScore();
   init();
   dealBtn.style.visibility = 'visible';
-render();
+  render();
 });
 
-// heres how i know its main page
 
