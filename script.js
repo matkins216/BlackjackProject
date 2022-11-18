@@ -251,7 +251,7 @@ dealBtn.addEventListener('click', (e) => {
   }
      render();
      standBtn.style.visibility = 'visible'
-hitBtn.style.visibility = 'visible'
+     hitBtn.style.visibility = 'visible'
 
 });
 
@@ -259,8 +259,8 @@ hitBtn.style.visibility = 'visible'
 
 function hit() {
   if(playerHand < 21){
-  let newplayercardValue = shuffledDeck.pop();
-  let newplayercardEl = document.createElement('div');
+      let newplayercardValue = shuffledDeck.pop();
+      let newplayercardEl = document.createElement('div');
     
       newplayercardEl.setAttribute('class', `card ${newplayercardValue.face}`)
       playerCardsEl.appendChild(newplayercardEl)
@@ -269,13 +269,14 @@ function hit() {
       
      
     }
-    if(playerHand === 21){
+
+  if(playerHand === 21){
       console.log('you win')
       bankRoll += bet
       winCount += 1
       resultEl.innerText = 'YOU WIN'
     }
-    
+      
     render();
 }
 
