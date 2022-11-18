@@ -241,7 +241,7 @@ hitBtn.addEventListener('click', (e) => {
     resultEl.innerText = 'YOU LOSE'
   }
  
-    render();
+render();
 });
 
 dealBtn.addEventListener('click', (e) => {
@@ -276,7 +276,7 @@ function hit() {
       winCount += 1
       resultEl.innerText = 'YOU WIN'
     }
-      
+
     render();
 }
 
